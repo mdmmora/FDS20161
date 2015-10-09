@@ -9,10 +9,10 @@ import TAD.graph.GrafoDirRotMatAdj.PQNodeDijkstra;
 
 
 /******
- * Implementação de um Grafo Dirigido e Rotulado utilizando Lista de Adjacências.
- * Esta implementação suporta apenas uma aresta entre um determinado par de nodos.
- * @param N - Genérico. Tipo do nodo do grafo
- * @param A - Genérico. Tipo do rótulo da aresta do grafo
+ * Implementaï¿½ï¿½o de um Grafo Dirigido e Rotulado utilizando Lista de Adjacï¿½ncias.
+ * Esta implementaï¿½ï¿½o suporta apenas uma aresta entre um determinado par de nodos.
+ * @param N - Genï¿½rico. Tipo do nodo do grafo
+ * @param A - Genï¿½rico. Tipo do rï¿½tulo da aresta do grafo
  * @author CAA
  * @version 1.0
  */
@@ -208,7 +208,7 @@ public class GrafoDirRotLisAdj<N, A> {
 
 	/***********************
 	Algo: caminhoAB
-	      também chamada "singleSourceSingleDest"
+	      tambï¿½m chamada "singleSourceSingleDest"
 	Entr: Nodo orig, Nodo dest
 	Said: Lista de Nodos
 
@@ -222,16 +222,16 @@ public class GrafoDirRotLisAdj<N, A> {
 
 	Lista res = [];
 
-	PARA CADA NODO v VIZINHO DE orig NÃO MARCADO   <<--
-	FAÇA {MARQUE v COMO VISITADO 
+	PARA CADA NODO v VIZINHO DE orig Nï¿½O MARCADO   <<--
+	FAï¿½A {MARQUE v COMO VISITADO 
 	      SE (v == dest)
-	      ENTÃO { res.addFisrt(orig);
+	      ENTï¿½O { res.addFisrt(orig);
 	       		  res.addLast(v);
 	              RETORNE (res);
 	            }
-	      SENÃO {res = caminhoABAux(v, dest);
-	             SE (res NÃO ESTÁ VAZIA)
-	             ENTÃO {res.addFirst(orig);
+	      SENï¿½O {res = caminhoABAux(v, dest);
+	             SE (res Nï¿½O ESTï¿½ VAZIA)
+	             ENTï¿½O {res.addFirst(orig);
 	                   RETORNE (res);}
 	            }
 	RETORNE (res);  
@@ -245,7 +245,6 @@ public class GrafoDirRotLisAdj<N, A> {
 		if ((index == -1) || (index1 == -1))
 			throw new IllegalArgumentException("InvNode");
 		else {
-			nodeList.get(index).mark();
 			return this.pathFromToAux(orig, dest);
 		}
 	}
@@ -294,8 +293,8 @@ public class GrafoDirRotLisAdj<N, A> {
 	result.add(orig);
 	orig.marca();
 
-	PARA CADA VIZINHO NÃO MARCADO v DE orig
-	FAÇA traversalDepthAux(v, result);
+	PARA CADA VIZINHO Nï¿½O MARCADO v DE orig
+	FAï¿½A traversalDepthAux(v, result);
 	 ***********************************/
 
 	public List<N> traversalDepth(N orig) {
@@ -334,12 +333,12 @@ public class GrafoDirRotLisAdj<N, A> {
 	orig.marca();
 
 	ENQUANTO (fAux.first() != null)
-	FAÇA {
+	FAï¿½A {
 	      nAux = fAux.dequeue();
 	      result.enqueue(nAux);
 
-	      PARA CADA VIZINHO NÃO MARCADO v DE nAUX
-	      FAÇA {v.marca();
+	      PARA CADA VIZINHO Nï¿½O MARCADO v DE nAUX
+	      FAï¿½A {v.marca();
 	      		fAux.enqueue(v);}
 	     }
 	 RETORNA result 	
@@ -378,26 +377,26 @@ public class GrafoDirRotLisAdj<N, A> {
 
 	/**********************************
 	Algo: Dijkstra  -  SSSP(G, v)
-	Entrada: G - grafo não dirigido e valorado, com valores numéricos não negativos
+	Entrada: G - grafo nï¿½o dirigido e valorado, com valores numï¿½ricos nï¿½o negativos
 	               v -  nodo de origem
-	Saída: Um valor D[u], para cada vértice u de G, tal que D[u]
-		é o tamanho do menor caminho de v até u em G
+	Saï¿½da: Um valor D[u], para cada vï¿½rtice u de G, tal que D[u]
+		ï¿½ o tamanho do menor caminho de v atï¿½ u em G
 
 	Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
-	FilaPrioridade Q = todos os vértices u de G usando os labels D[u] como chave
+	FilaPrioridade Q = todos os vï¿½rtices u de G usando os labels D[u] como chave
 
-	ENQUANTO Q não vazia {
+	ENQUANTO Q nï¿½o vazia {
 		u  = Q.removeMin();
 
-		PARA CADA vértice z adjacente à u tal que z está em Q
-		FAÇA {
+		PARA CADA vï¿½rtice z adjacente ï¿½ u tal que z estï¿½ em Q
+		FAï¿½A {
 			SE D[u] + valor((u,z))  <  D[z]
-			ENTÃO D[z] = D[u] + valor((u,z))
+			ENTï¿½O D[z] = D[u] + valor((u,z))
 
-			Troque para D[z] a chave do vértice z em Q
+			Troque para D[z] a chave do vï¿½rtice z em Q
 		      }
 		}
-	RETORNE o rótulo D[u] de cada vértice u
+	RETORNE o rï¿½tulo D[u] de cada vï¿½rtice u
 	 **********************************/	
 
 	public DijkstraResult<N> dijkstraMinimumPath_v1(N orig){
@@ -407,13 +406,13 @@ public class GrafoDirRotLisAdj<N, A> {
 		PQNodeDijkstra<Node<N,A>, Double> uNode;
 
 		//Inicializa a tabela de pesos e 
-		//Inicializa Priority Queue. Nesta implementação
-		//  os pesos estão junto do elemento na PriorityQueue, além de
+		//Inicializa Priority Queue. Nesta implementaï¿½ï¿½o
+		//  os pesos estï¿½o junto do elemento na PriorityQueue, alï¿½m de
 		//  estarem em um ArrayList separado
 		//
 		//No algoritmo:
 		//Inicialize D[v] = 0 e D[u] = +infinito para cada u!=v
-		//FilaPrioridade Q = todos os vértices u de G usando os labels D[u] como chave
+		//FilaPrioridade Q = todos os vï¿½rtices u de G usando os labels D[u] como chave
 		for (int i = 0; i < nodeList.size(); i++)
 			if (i != indexOrig) {
 				queue.offer(new PQNodeDijkstra<Node<N,A>, Double>(nodeList.get(i), Double.MAX_VALUE));
@@ -430,8 +429,8 @@ public class GrafoDirRotLisAdj<N, A> {
 			Node<N,A> nodoCorrente = uNode.getNodePos();
 
 			for (Edge<N, A> edg:nodoCorrente.getLstAdj()) //Percorre a lista de adjacentes do nodo corrente
-				for (PQNodeDijkstra<Node<N,A>, Double> n:queue)  //  Verificando se o adjacente está la fila de nodos não resolvidos
-					if (n.getNodePos().getElem().equals(edg.getDest().getElem())) {  // Sim, está! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
+				for (PQNodeDijkstra<Node<N,A>, Double> n:queue)  //  Verificando se o adjacente estï¿½ la fila de nodos nï¿½o resolvidos
+					if (n.getNodePos().getElem().equals(edg.getDest().getElem())) {  // Sim, estï¿½! Tenta relaxar o nodo -> acertar peso e nodo anterior, se for o caso.
 						N elementoNodoAdjacente = edg.getDest().getElem();
 						N elementoNodoCorrente = uNode.getNodePos().getElem();
 
