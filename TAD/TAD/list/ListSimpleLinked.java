@@ -3,6 +3,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
+import TAD.list.*;
 import TAD.stack.Stack;
 import TAD.stack.StackTAD;
 
@@ -505,14 +506,14 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 
 	public String toString() {
 		Node aux = refHead;
-		StringBuilder res = new StringBuilder();
+		String res = "";
 		int tot = size();
 		
 		for (int i = 0; i < tot; i++) {
-			res.append(aux.getElem().toString() + " ");
+			res = res + aux.getElem().toString();
 			aux = aux.getNext();
 		}
 		
-		return res.toString();
+		return res;
 	}
 }
