@@ -8,10 +8,10 @@ import TAD.stack.StackTAD;
 
 public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, Serializable {
 
-	public class Node<E extends Comparable<E>> implements Serializable, Comparable<Node<E>> {		
+	public class Node implements Serializable, Comparable<Node> {		
 
-	    private Node<E> refNext;
-	    private E item;
+	    private Node refNext;
+	    private D item;
 	    
 	    public Node()
 	    {
@@ -19,36 +19,35 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	    	item = null;
 	    }
 	    
-	    public Node(E elem, Node<E> n)
+	    public Node(D elem, Node n)
 	    {
 	    	this.item = elem;
 	    	refNext = n;
 	    }
 
-	    public void setNext(Node<E> no) 
+	    public void setNext(Node no) 
 	    	{ refNext = no; }
 	 
-	    public Node<E> getNext() 
+	    public Node getNext() 
 	    	{ return refNext; }
 	    
-	    public void setElem(E o) 
+	    public void setElem(D o) 
 	    	{ item = o; }
 	    
-	    public E getElem() 
+	    public D getElem() 
 	    	{ return item; }
 
-		@Override
-		public int compareTo(Node<E> n) {
+		public int compareTo(Node n) {
 			return this.getElem().compareTo(n.getElem());
 		}
 	}
 	
-    private Node<D> refHead = null;
-    private Node<D> refTail = null;
+    private Node refHead = null;
+    private Node refTail = null;
     private int qtdElem = 0;
     
     private class IteradorLSL implements Iterator<D>{
-    	private  Node<D> proximo;
+    	private  Node proximo;
     	
     	public IteradorLSL(){
     		proximo = refHead;
@@ -80,8 +79,8 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     }
     
 	private class Iterador implements IteratorList<D>{
-		private StackTAD<Node<D>> visitados = new Stack<Node<D>>();
-        private Node<D> position = refHead;
+		private StackTAD<Node> visitados = new Stack<Node>();
+        private Node position = refHead;
         
         public boolean hasNext() { 
         	return (position != null);
@@ -93,7 +92,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
         
         public boolean hasNext(D elem) {
         	boolean res = false;
-        	Node<D> aux = position;
+        	Node aux = position;
 
         	while (aux != null && !aux.getElem().equals(elem))
         		aux = aux.getNext();
@@ -104,7 +103,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
         
         public boolean hasPrev(D elem) {
         	boolean res = false;
-        	Node<D> aux = refHead;
+        	Node aux = refHead;
 
         	if (aux != null) {
         		while (aux != position && !aux.getElem().equals(elem))
@@ -162,7 +161,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	
 	public void add(D element)
 	{
-		Node<D> novo = new Node<D>(element, null);
+		Node novo = new Node(element, null);
 		
 		if (refHead == null)
 		{
@@ -178,7 +177,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	}
 
 	public void addFirst(D d) {
-		Node<D> novo = new Node<D>(d, refHead);
+		Node novo = new Node(d, refHead);
 		
 		if (refHead == null)
 			refTail = novo;
@@ -189,7 +188,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	}
 
 	public void addLast(D d) {   //  <<<<<<-----------
-		Node<D> novo = new Node<D>(d, refTail);
+		Node novo = new Node(d, refTail);
 		
 		add(d);
 	}
@@ -198,10 +197,10 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	
 	public void add(int index, D element)
 	{
-		Node<D> ant, novo, prox = null;
+		Node ant, novo, prox = null;
 		int i;
 		if ((index >= 0) && (index <= qtdElem)) {
-			novo = new Node<D>();
+			novo = new Node();
 			novo.setElem(element);
 	
 			if (index == 0) {
@@ -246,7 +245,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 
 	public D removeLast() {
 	D auxD = null;
-	Node<D> aux;
+	Node aux;
 	
 	if(refHead != null) 
 	   {
@@ -273,7 +272,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	}
 
 	public D remove(int index) {
-		Node<D> aux, ant, prox;
+		Node aux, ant, prox;
 		D auxD = null;
 		int i;
 		
@@ -315,7 +314,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 
 	public D remove(D element) {
 		D res = null;
-		Node<D> aux, ant; 
+		Node aux, ant; 
 		
 		ant = aux = refHead;
 		while(aux != null && !aux.getElem().equals(element)) {
@@ -345,7 +344,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	
 	public int removeAll(D dado) {
 		int res = 0;
-		Node<D> aux, ant;
+		Node aux, ant;
 		if (refHead != null) {
 			aux = ant = refHead;
 			while(aux != null) {
@@ -399,7 +398,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 
 	public D get(int pos){
 		D res = null;
-		Node<D> aux;
+		Node aux;
 		int i;
 		
 	    if ((pos >= 0) && (pos < qtdElem))
@@ -420,7 +419,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	}
 
 	public void set(int index, D element) {
-		Node<D> aux = refHead;
+		Node aux = refHead;
 		
 		for (int i = 0; aux != null && i < index; i++)
 			aux = aux.getNext();
@@ -433,7 +432,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 
 	public D search(D ob)
 	{
-		Node<D> aux;
+		Node aux;
 		D res = null;
 		
 		aux = refHead;
@@ -472,7 +471,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     public int count(D dado)
     {
     	int cont = 0;
-    	Node<D> aux = refHead;
+    	Node aux = refHead;
     	
     	while(aux != null)
     	{
@@ -491,7 +490,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 
 	public void reverse()
 	{
-		Node<D> novaLista = null, aux;
+		Node novaLista = null, aux;
 		
 		while (!this.isEmpty())
 		{
@@ -505,7 +504,7 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	}
 
 	public String toString() {
-		Node<D> aux = refHead;
+		Node aux = refHead;
 		StringBuilder res = new StringBuilder();
 		int tot = size();
 		
