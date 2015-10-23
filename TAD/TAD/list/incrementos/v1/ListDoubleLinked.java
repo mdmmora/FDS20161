@@ -36,7 +36,6 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
 	
     private Node refHead;
     private Node refTail;
-    private Node current;
     private int qtdElem = 0;
 
     public int size() 
@@ -87,7 +86,6 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
     		}
     		
     		qtdElem++;			//** atualiza quantidade de elementos
-    		current = novo;
     	}
     	else
     		throw new IndexOutOfBoundsException();
@@ -121,8 +119,6 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
                   aux = aux.getNext();
             
                aux.setItem(element);
-               
-               current = aux;
               }
     	   else;
         else 
@@ -142,38 +138,10 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
                   aux = aux.getNext();
             
                res = aux.getItem();
-               
-               current = aux;
               }
     	   else;
         else
         	throw new IndexOutOfBoundsException();
-        
-        return res;
-    }
- 
-    public D getNext() {
-    	D res = null;
-    	
-        if(current != null) 
-          {
-        	current = current.getNext();
-        	if (current != null)
-                res = current.getItem();
-          }
-        
-        return res;
-    }
-        
-    public D getPrev() {
-    	D res = null;
-    	
-        if(current != null) 
-          {
-        	current = current.getPrev();
-        	if (current != null)
-                res = current.getItem();
-          }
         
         return res;
     }
@@ -231,7 +199,6 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
     		}
     		
     		qtdElem --;
-    		current = null;
     	}
     	else
     		throw new IndexOutOfBoundsException();
@@ -286,29 +253,7 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
     	
     	if (aux != null)
     		res = aux.getItem();
-  		current = aux;
     	
-    	return res;
-    }
-    
-    public D searchNext()
-    {
-    	D dadoCorrente = null, res = null;
-    	Node aux;
-    	
-    	if (current != null)
-    	   {
-    		dadoCorrente = current.getItem();
-    		
-    		aux = current;
-        	while ((aux != null) && (aux.getItem().equals(dadoCorrente) != true))
-        		aux = aux.getNext();
-        	
-        	if (aux != null)
-        		res = aux.getItem();
-      		current = aux;
-    	   }
-    	   
     	return res;
     }
     
@@ -345,7 +290,7 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
     
     public void removeAll()
     {
-    	refHead = refTail = current = null;
+    	refHead = refTail = null;
     	qtdElem = 0;
     }
 

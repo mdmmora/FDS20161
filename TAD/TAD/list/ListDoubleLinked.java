@@ -36,7 +36,6 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 	
     private Node<D> refHead;
     private Node<D> refTail;
-    private Node<D> current;
     private int qtdElem = 0;
 
     public int size() 
@@ -47,38 +46,38 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     	Node<D> aux, novo, prox;
     	int i;
     	
-    	if ((index >= 0) && (index <= qtdElem)) //**Posição é válida?
+    	if ((index >= 0) && (index <= qtdElem)) //**Posiï¿½ï¿½o ï¿½ vï¿½lida?
     	{
     		novo = new Node<D>();		//**Instancia novo nodo
     		novo.setItem(element);
     		
     		if (index == 0)				//** Deve ser o primeiro da Lista?
     		{
-    			if (refHead != null)    //** Lista está vazia?
+    			if (refHead != null)    //** Lista estï¿½ vazia?
     				refHead.setPrev(novo);   //** Atual primeiro referencia novo primeiro como anterior
     			else
-    				refTail = novo;     	 //** Senão será o primeiro e o último
+    				refTail = novo;     	 //** Senï¿½o serï¿½ o primeiro e o ï¿½ltimo
     			
-    			novo.setNext(refHead);  //** Novo primeiro referencia atual primeiro como próximo
+    			novo.setNext(refHead);  //** Novo primeiro referencia atual primeiro como prï¿½ximo
     			novo.setPrev(null);
-    			refHead = novo;         //** Atualiza referência de primeiro da lista
+    			refHead = novo;         //** Atualiza referï¿½ncia de primeiro da lista
     		}
     		else 
     		{		
-    			if (index != qtdElem)   //** Novo nodo não será último?
+    			if (index != qtdElem)   //** Novo nodo nï¿½o serï¿½ ï¿½ltimo?
     			{
     				aux = refHead;		
-        			for (i = 1; i < index; i++)		//**  Procura o elemento da posição desejada
+        			for (i = 1; i < index; i++)		//**  Procura o elemento da posiï¿½ï¿½o desejada
         				aux = aux.getNext();
-        									//** Aux referencia o nodo que será o anterior ao novo
+        									//** Aux referencia o nodo que serï¿½ o anterior ao novo
     				prox = aux.getNext();   //** Prox referencia o nodo seguinte ao novo
     				prox.setPrev(novo);		//** Faz o nodo seguinte ao novo referenciar o novo como anterior
     			}
-    			else     //**  Nodo será o último
+    			else     //**  Nodo serï¿½ o ï¿½ltimo
     			{
-    				aux = refTail;  //**  Aux referencia o último nodo
-    				prox = null;    //**  O novo nodo não terá um nodo seguinta (será o último)
-    				refTail = novo; //**  O novo nodo passa a ser o último
+    				aux = refTail;  //**  Aux referencia o ï¿½ltimo nodo
+    				prox = null;    //**  O novo nodo nï¿½o terï¿½ um nodo seguinta (serï¿½ o ï¿½ltimo)
+    				refTail = novo; //**  O novo nodo passa a ser o ï¿½ltimo
     			}
     								//** Ajusta os encadeamentos
     			aux.setNext(novo);		//**o anterior referencia o novo como next
@@ -87,7 +86,6 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     		}
     		
     		qtdElem++;			//** atualiza quantidade de elementos
-    		current = novo;
     	}
     	else
     		throw new IndexOutOfBoundsException();
@@ -121,8 +119,6 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
                   aux = aux.getNext();
             
                aux.setItem(element);
-               
-               current = aux;
               }
     	   else;
         else 
@@ -142,38 +138,10 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
                   aux = aux.getNext();
             
                res = aux.getItem();
-               
-               current = aux;
               }
     	   else;
         else
         	throw new IndexOutOfBoundsException();
-        
-        return res;
-    }
- 
-    public D getNext() {
-    	D res = null;
-    	
-        if(current != null) 
-          {
-        	current = current.getNext();
-        	if (current != null)
-                res = current.getItem();
-          }
-        
-        return res;
-    }
-        
-    public D getPrev() {
-    	D res = null;
-    	
-        if(current != null) 
-          {
-        	current = current.getPrev();
-        	if (current != null)
-                res = current.getItem();
-          }
         
         return res;
     }
@@ -231,7 +199,6 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     		}
     		
     		qtdElem --;
-    		current = null;
     	}
     	else
     		throw new IndexOutOfBoundsException();
@@ -266,11 +233,11 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 		}
 		
 		//return res;
-		// para forçar o erro. Devo atualizar Prev
+		// para forï¿½ar o erro. Devo atualizar Prev
 		// e expandir o Test para garantir links para 
-		// trás (via iteradores, em todas as implementações.
+		// trï¿½s (via iteradores, em todas as implementaï¿½ï¿½es.
 		// Revisar os testesCase para garantir que cada
-		// alteração preserva integridade, inclusive das
+		// alteraï¿½ï¿½o preserva integridade, inclusive das
 		// estruturas internas.
 		return null;
     }
@@ -286,29 +253,7 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     	
     	if (aux != null)
     		res = aux.getItem();
-  		current = aux;
     	
-    	return res;
-    }
-    
-    public D searchNext()
-    {
-    	D dadoCorrente = null, res = null;
-    	Node<D> aux;
-    	
-    	if (current != null)
-    	   {
-    		dadoCorrente = current.getItem();
-    		
-    		aux = current;
-        	while ((aux != null) && (aux.getItem().equals(dadoCorrente) != true))
-        		aux = aux.getNext();
-        	
-        	if (aux != null)
-        		res = aux.getItem();
-      		current = aux;
-    	   }
-    	   
     	return res;
     }
     
@@ -345,7 +290,7 @@ public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, S
     
     public void removeAll()
     {
-    	refHead = refTail = current = null;
+    	refHead = refTail = null;
     	qtdElem = 0;
     }
 
