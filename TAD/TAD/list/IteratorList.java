@@ -7,6 +7,4 @@ public interface IteratorList<E> extends Iterator<E> {
 	public E next(E element);
 	public boolean hasPrev();
 	public E prev();
-	public boolean hasPrev(E element);
-	public E prev(E element);
 }

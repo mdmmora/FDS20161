@@ -15,6 +15,13 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
 	    private Node prev;
 	    private D item;
 
+	    public Node() {
+	    	
+	    }
+	    public Node(D elem, Node next) {
+	    	item = elem;
+	    	this.next = next;
+	    }
 	    public void setNext(Node no) 
 	    	{ next = no; }
 	 
@@ -295,7 +302,16 @@ public class ListDoubleLinked <D> implements ListTAD<D> {
     }
 
 	public void addFirst(D d) {
-		this.add(0, d);
+		Node novo = new Node(d, refHead);
+		
+		if (refHead == null)
+			refTail = novo;
+		else
+			refHead.setPrev(novo);
+		
+		refHead = novo;
+		
+		qtdElem++;
 	}
 
 	public void addLast(D d) {

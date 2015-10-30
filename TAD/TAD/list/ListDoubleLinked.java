@@ -7,7 +7,7 @@ import TAD.list.ListSimpleLinked.Node;
 //
 // Falta implementar um atributo refTail
 //
-public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, Serializable {
+public class ListDoubleLinked <D extends Comparable<D>> implements ListTAD<D>, Serializable, Iterable<D> {
 
 	private class Node<E>  implements Serializable {
 

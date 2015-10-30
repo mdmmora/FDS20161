@@ -72,9 +72,7 @@ public class ListSimpleLinked <D> implements ListTAD<D> {
 		qtdElem++;
 	}
 
-	public void addLast(D d) {   //  <<<<<<-----------
-		Node novo = new Node(d, refTail);
-		
+	public void addLast(D d) {
 		add(d);
 	}
 

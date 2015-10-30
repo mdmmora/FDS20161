@@ -7,7 +7,7 @@ import TAD.list.*;
 import TAD.stack.Stack;
 import TAD.stack.StackTAD;
 
-public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, Serializable {
+public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, Serializable, Iterable<D> {
 
 	public class Node implements Serializable, Comparable<Node> {		
 
@@ -446,10 +446,10 @@ public class ListSimpleLinked <D extends Comparable<D>> implements ListTAD<D>, S
 		return res;
 	}
 
-//	public Iterator<D> iterator() {
-//		return new Iterador();
-//	}
-
+/*	public Iterator<D> iterator() {
+		return new Iterador();
+	}
+*/
 	public Iterator<D> iterator() {
 		return new IteradorLSL();
 	}
