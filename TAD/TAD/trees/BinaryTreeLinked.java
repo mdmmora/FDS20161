@@ -11,8 +11,8 @@ import TAD.stack.Stack;
 import TAD.stack.StackTAD;
 
 /**
- * Implementação do TAD Árvore Binária.
- * @author Michael Mora, Júlio Machado, Isabel Manssour
+ * Implementaï¿½ï¿½o do TAD ï¿½rvore Binï¿½ria.
+ * @author Michael Mora, Jï¿½lio Machado, Isabel Manssour
  */
 public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD<E>, Iterable<E>, Serializable {
 	private static final class Node<T extends Comparable<T>> implements Comparable<Node<T>>, Serializable{
@@ -55,7 +55,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		}		
 	}
 	private int count; //quantidade de nodos
-	private Node<E> refRoot; //referência para o nodo raiz
+	private Node<E> refRoot; //referï¿½ncia para o nodo raiz
 	
 	public BinaryTreeLinked() {
 		count = 0;
@@ -205,7 +205,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 		Node<E> n = new Node<E>(element);
 		Node<E> nAux = null;
 		boolean res = false;
-		//Verifica se está inserindo na raiz
+		//Verifica se estï¿½ inserindo na raiz
 		if (father == null) {
 			if (position == NodePosition.LEFT)
 				n.setLeft(refRoot);
@@ -219,20 +219,20 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 			res = true;
 			count++;
 		}
-		//Insere no meio da árvore
+		//Insere no meio da ï¿½rvore
 		else {
 			nAux = searchNodeRef(father, refRoot);
 			if (nAux != null) {
 				n.setFather(nAux);
 				if (position == NodePosition.LEFT) {
-					//Insere como subárvore da esquerda
+					//Insere como subï¿½rvore da esquerda
 					n.setLeft(nAux.getLeft());
 					if (nAux.getLeft() != null)
 						nAux.getLeft().setFather(n);
 					nAux.setLeft(n);
 				}
 				else {
-					//Insere como subárvore da direita
+					//Insere como subï¿½rvore da direita
 					n.setRight(nAux.getRight());
 					if (nAux.getRight() != null)
 						nAux.getRight().setFather(n);
@@ -340,6 +340,10 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	{
 		Node<E> nAux = searchNodeRef(element, refRoot);
 		return (nAux != null);
+	}
+	
+	private Node<E> searchNodeRef(E element) {
+		return searchNodeRef(element, refRoot);
 	}
 	
 	private Node<E> searchNodeRef(E element, Node<E> target)
@@ -557,9 +561,9 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 	}
 	
 	//***********************************************************
-	//* Exercicios sobre estruturas em árvores. Não fazem parte 
-	//* da interface padrão. Não entregar antes de passar o 
-	//* exercício.
+	//* Exercicios sobre estruturas em ï¿½rvores. Nï¿½o fazem parte 
+	//* da interface padrï¿½o. Nï¿½o entregar antes de passar o 
+	//* exercï¿½cio.
 	//***********************************************************
 
 	public int count(E it)
@@ -946,7 +950,7 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 			Node<E> nAux = null;
 			boolean res = false;
 			
-			//Verifica se está inserindo na raiz
+			//Verifica se estï¿½ inserindo na raiz
 			if ((ref == null) || (ref == refRoot)) {
 				if (position == NodePosition.LEFT)
 					n.setLeft(refRoot);
@@ -960,20 +964,20 @@ public class BinaryTreeLinked <E extends Comparable<E>> implements BinaryTreeTAD
 				res = true;
 				count++;
 			}
-			//Insere no meio da árvore
+			//Insere no meio da ï¿½rvore
 			else {
 				nAux = ref;
 				if (nAux != null) {
 					n.setFather(nAux);
 					if (position == NodePosition.LEFT) {
-						//Insere como subárvore da esquerda
+						//Insere como subï¿½rvore da esquerda
 						n.setLeft(nAux.getLeft());
 						if (nAux.getLeft() != null)
 							nAux.getLeft().setFather(n);
 						nAux.setLeft(n);
 					}
 					else {
-						//Insere como subárvore da direita
+						//Insere como subï¿½rvore da direita
 						n.setRight(nAux.getRight());
 						if (nAux.getRight() != null)
 							nAux.getRight().setFather(n);
